@@ -13,11 +13,31 @@ class Quiz {
     
 
 
-    // 3. moveToNextQuestion()
+    moveToNextQuestion() {
+        this.currentQuestionIndex++;
+    }
 
-    // 4. shuffleQuestions()
 
-    // 5. checkAnswer(answer)
+    shuffleQuestions() {
+        for(let i = this.questions.length; i > 0; i--) {
+            const random = Math.floor(Math.random() * (i + 1));
+            [this.questions[i], this.questions[random]] = [this.questions[random], this.questions[i]];
+        }
+    }
 
-    // 6. hasEnded()
+    
+    checkAnswer(answer) {
+        if(this.questions = answer) {
+            this.correctAnswers++
+        }
+    }
+
+
+    hasEnded() {
+        if(this.currentQuestionIndex < this.questions.length) {
+            return false;
+        } else if(this.currentQuestionIndex === this.questions.length) {
+            return true;
+        }
+    }
 }
