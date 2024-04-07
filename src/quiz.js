@@ -25,9 +25,9 @@ class Quiz {
         }
     }
 
-    
+
     checkAnswer(answer) {
-        if(this.questions = answer) {
+        if(this.getQuestion().answer === answer) {
             this.correctAnswers++
         }
     }
@@ -36,8 +36,24 @@ class Quiz {
     hasEnded() {
         if(this.currentQuestionIndex < this.questions.length) {
             return false;
-        } else if(this.currentQuestionIndex === this.questions.length) {
+        } else  {
             return true;
         }
+    }
+
+
+    filterQuestionsByDifficulty(difficulty) {
+        if(typeof difficulty !== 'number' || difficulty < 1 || difficulty > 3) {
+            return;
+        }
+       this.questions = this.questions.filter(question => question.difficulty === difficulty);
+    }
+
+    averageDifficulty() {
+       const sumQuestionsDifficulty = this.questions.reduce((acc, question) => {
+        return acc + question.difficulty;
+       }, 0);
+       const averageQuestionsDifficulty = sumQuestionsDifficulty / this.questions.length;
+       return averageQuestionsDifficulty;
     }
 }
